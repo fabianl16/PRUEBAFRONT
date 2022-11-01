@@ -1,0 +1,13 @@
+/* You can add global styles to this file, and also import other style files */
+.flex{
+    display: flex !important;
+} 
+.justify-content-center{
+justify-content: center !important;
+} 
+.items-center{
+    align-items: center !important;
+}
+w-full{
+    width: 100%;
+}

@@ -1,0 +1,60 @@
+<form nz-form [formGroup]="form" (ngSubmit)="submitForm()">
+    <nz-form-item>
+        <nz-form-label
+          [nzSm]="6"
+          [nzXs]="24"
+          nzFor="fullName"
+          nzRequired>
+          <span>Nombre Completo</span>
+        </nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="El nombre completo es obligatorio">
+          <input placeholder="Nombre Completo" nz-input id="fullName" formControlName="fullName" />
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+    <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="birthDay">
+        <span>Fecha de nacimiento</span>
+    </nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="La fecha de nacimiento es obligatoria">
+      <nz-date-picker style="width: 100%;" formControlName="birthDay" nzId="birthDay" ></nz-date-picker>
+    </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="email">Correo Electrónico</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Ingrese un correo válido">
+        <input placeholder="example@example.com" nz-input formControlName="email" id="email" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="phoneNumber" nzRequired>Número telefónico</nz-form-label>
+      <nz-form-control
+      [nzSm]="14"
+      [nzXs]="24"
+      nzErrorTip="Escribe un número telefónico válido (10 dígitos, solo numeros)"
+      >
+      <nz-input-group [nzAddOnBefore]="addOnBeforeTemplate">
+        <ng-template #addOnBeforeTemplate>
+          <nz-select formControlName="phoneNumberPrefix" class="phone-select">
+            <nz-option nzLabel="MX(+52)" nzValue="+52"></nz-option>
+            <nz-option nzLabel="US(+87)" nzValue="+87"></nz-option>
+          </nz-select>
+        </ng-template>
+        <input minlength="10" pattern="[0-9]{10}" placeholder="1234567890" formControlName="phone" id="phone" nz-input />
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+  <!-- firma -->
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="sign">Firma</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" [nzValidateStatus]="signControl.errors && signControl.errors['required'] && signControl.dirty ? 'error' : ''" nzErrorTip="La firma es obligatoria" class="">
+      <canvas [ngClass]="{'error': signControl.errors && signControl.errors['required'] && signControl.dirty}" #canvas width="350" height="120"></canvas>
+    </nz-form-control>
+  </nz-form-item>
+  <div class="center">
+      <button [nzLoading]="loading" nzSize="large" nz-button  nzType="primary" type="submit">Enviar</button> 
+    </div>
+</form>
+<!-- <pre>{{ form.value | json}}</pre> -->
